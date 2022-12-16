@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Univer Server</title>
+</head>
+<body>
+    <input type="text" id="box">
+    <script>
+
+        const box  = document.querySelector('#box')
+        box.addEventListener('blur',(e)=>{
+            const txt = e.target.value;
+            ws.send(txt)
+        })
+
+        var ws = new WebSocket("ws://localhost:8448/ws");
+        //triggered when the connection is opened
+        ws.onopen = function(evt) {  
+            console.log("Connection open ...");  
+            ws.send("Hello WebSockets!");  
+        };  
+        //Triggered when a message is received
+        ws.onmessage = function(evt) {  
+            console.log("Received Message: " + evt.data);  
+        };  
+        //triggered when the connection is closed
+        ws.onclose = function(evt) {  
+            console.log("Connection closed.");  
+        };  
+        
+        </script>
+</body>
+</html>
