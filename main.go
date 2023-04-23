@@ -137,7 +137,7 @@ func (c *Client) write() {
 	}
 }
  
-func main() {
+func wsMain() {
 	fmt.Println("Starting application...")
 	//开一个goroutine执行开始程序
 	go manager.start()
@@ -145,7 +145,7 @@ func main() {
 	http.HandleFunc("/ws", wsHandler)
 	http.HandleFunc("/health", healthHandler)
 	//监听本地的8011端口
-	fmt.Println("chat server start.....")
+	fmt.Println("Chat server start at: localhost:8448")
 	// 注意这里必须是0.0.0.0才能部署在服务器使用
 	_ = http.ListenAndServe("0.0.0.0:8448", nil)
 }
